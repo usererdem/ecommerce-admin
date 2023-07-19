@@ -1,11 +1,20 @@
-import { UserButton } from "@clerk/nextjs";
+"use client";
+
+import { useEffect } from "react";
+
+import { useStoreModal } from "@/hooks/use-store-modal";
 
 const SetupPage = () => {
-  return (
-    <div>
-      <UserButton afterSignOutUrl='/' />
-    </div>
-  );
+  const onOpen = useStoreModal((state) => state.onOpen);
+  const isOpen = useStoreModal((state) => state.isOpen);
+
+  useEffect(() => {
+    if (!isOpen) {
+      onOpen();
+    }
+  }, [isOpen, onOpen]);
+
+  return <div className='p-4'>Root Pace</div>;
 };
 
 export default SetupPage;
