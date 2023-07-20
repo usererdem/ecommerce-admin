@@ -14,7 +14,7 @@ const SetupPage = () => {
     }
   }, [isOpen, onOpen]);
 
-  return <div className='p-4'>Root Pace</div>;
+  return null;
 };
 
 export default SetupPage;
