@@ -3,6 +3,7 @@ import { auth } from "@clerk/nextjs";
 
 import prismadb from "@/lib/prismadb";
 import { useParams } from "next/navigation";
+import { corsHeaders } from "../checkout/route";
 
 export async function POST(
   req: Request,
@@ -70,7 +71,9 @@ export async function GET(
       },
     });
 
-    return NextResponse.json(categories);
+    return NextResponse.json(categories, {
+      headers: corsHeaders,
+    });
   } catch (error) {
     console.log("[CATEGORIES_GET]", error);
     return new NextResponse("Internal error", { status: 500 });
